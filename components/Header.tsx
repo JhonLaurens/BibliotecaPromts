@@ -30,12 +30,18 @@ const NavButton: React.FC<{
 
 const Header: React.FC<HeaderProps> = ({ activeSection, setActiveSection }) => {
   return (
-    <header className="container mx-auto p-4 flex justify-between items-center">
+    <header className="container mx-auto p-4 flex flex-col sm:flex-row justify-between items-center gap-4">
       <div className="flex items-center gap-2">
-        <Icon name="sparkles" className="w-8 h-8 text-purple-400"/>
-        <h1 className="text-xl md:text-2xl font-bold text-white">AI Prompt Library</h1>
+        <Icon name="sparkles" className="w-8 h-8 text-purple-400" aria-hidden="true" />
+        <h1 className="text-xl md:text-2xl font-bold text-white whitespace-nowrap">
+          AI Prompt Library
+        </h1>
       </div>
-      <nav className="flex items-center gap-2 md:gap-4 p-1 bg-gray-800 rounded-lg">
+      <nav 
+        className="flex items-center gap-1 sm:gap-2 md:gap-4 p-1 bg-gray-800 rounded-lg w-full sm:w-auto justify-center"
+        role="navigation"
+        aria-label="Navegación principal"
+      >
         <NavButton
           label="Desarrollo"
           iconName="code"

@@ -1,10 +1,13 @@
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, Suspense, lazy } from 'react';
 import type { Section } from './types';
 import Header from './components/Header';
-import SoftwareSection from './components/SoftwareSection';
-import ChatSection from './components/ChatSection';
-import ImageSection from './components/ImageSection';
+import Spinner from './components/common/Spinner';
+
+// Lazy loading de componentes para mejorar el rendimiento
+const SoftwareSection = lazy(() => import('./components/SoftwareSection'));
+const ChatSection = lazy(() => import('./components/ChatSection'));
+const ImageSection = lazy(() => import('./components/ImageSection'));
 
 function App() {
   const [activeSection, setActiveSection] = useState<Section>('dev');
@@ -12,13 +15,29 @@ function App() {
   const renderSection = useMemo(() => {
     switch (activeSection) {
       case 'dev':
-        return <SoftwareSection />;
+        return (
+          <Suspense fallback={<Spinner />}>
+            <SoftwareSection />
+          </Suspense>
+        );
       case 'chat':
-        return <ChatSection />;
+        return (
+          <Suspense fallback={<Spinner />}>
+            <ChatSection />
+          </Suspense>
+        );
       case 'image':
-        return <ImageSection />;
+        return (
+          <Suspense fallback={<Spinner />}>
+            <ImageSection />
+          </Suspense>
+        );
       default:
-        return <SoftwareSection />;
+        return (
+          <Suspense fallback={<Spinner />}>
+            <SoftwareSection />
+          </Suspense>
+        );
     }
   }, [activeSection]);
 
