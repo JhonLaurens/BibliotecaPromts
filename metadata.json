@@ -1,0 +1,5 @@
+{
+  "name": "AI Prompt Library",
+  "description": "An interactive library of prompts for software development, a chat interface to talk with an AI, and an image generator. Explore and create with the power of Gemini.",
+  "requestFramePermissions": []
+}
